@@ -32,3 +32,14 @@ int main() {
     end = std::chrono::high_resolution_clock::now();
     std::cout << "Floating point operation benchmark took: "
               << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
+
+    // Memory operation benchmark
+    start = std::chrono::high_resolution_clock::now();
+    int *array = new int[SIZE];
+    for (int i = 0; i < SIZE; i++) array[i] = i;
+    for (int i = 0; i < SIZE; i++) result += array[i];
+    for (int i = 0; i < SIZE; i++) array[i] = result;
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << "Memory operation benchmark took: "
+              << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
+    delete[] array;
