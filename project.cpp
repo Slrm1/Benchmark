@@ -22,3 +22,13 @@ int main() {
     auto end = std::chrono::high_resolution_clock::now();
     std::cout << "Integer operation benchmark took: "
               << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
+
+    // Floating point operation benchmark
+    start = std::chrono::high_resolution_clock::now();
+    double result_f = 1.0;
+    for (int i = 1; i <= SIZE; i++) result_f += i;
+    for (int i = 1; i <= SIZE / 2; i++) result_f *= i;
+    for (int i = 1; i <= SIZE / 4; i++) if (i != 0) result_f /= i;
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << "Floating point operation benchmark took: "
+              << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
