@@ -43,3 +43,11 @@ int main() {
     std::cout << "Memory operation benchmark took: "
               << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
     delete[] array;
+
+    // Hard drive benchmark 1
+    start = std::chrono::high_resolution_clock::now();
+    FILE *fp = fopen("file1.txt", "w");
+    char buf[B] = {0};
+    for (int i = 0; i < N / B; i++) fwrite(buf, sizeof(char), B, fp);
+    fclose(fp);
+    
