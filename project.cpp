@@ -51,3 +51,9 @@ int main() {
     for (int i = 0; i < N / B; i++) fwrite(buf, sizeof(char), B, fp);
     fclose(fp);
     
+    fp = fopen("file1.txt", "r");
+    for (int i = 0; i < N / B; i++) fread(buf, sizeof(char), B, fp);
+    fclose(fp);
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << "Hard drive benchmark 1 took: "
+              << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
