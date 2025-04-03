@@ -57,3 +57,20 @@ int main() {
     end = std::chrono::high_resolution_clock::now();
     std::cout << "Hard drive benchmark 1 took: "
               << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
+    
+    // Hard drive benchmark 2
+    start = std::chrono::high_resolution_clock::now();
+    fp = fopen("file2.txt", "w");
+    char buf2[B2] = {0};
+    for (int i = 0; i < N / B2; i++) fwrite(buf2, sizeof(char), B2, fp);
+    fclose(fp);
+
+    fp = fopen("file2.txt", "r");
+    for (int i = 0; i < N / B2; i++) fread(buf2, sizeof(char), B2, fp);
+    fclose(fp);
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << "Hard drive benchmark 2 took: "
+                << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " seconds\n";
+    
+    return 0;
+}                
